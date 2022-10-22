@@ -1,5 +1,7 @@
 package com.amazon.ata.music.playlist.service.models;
 
+import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -91,13 +93,19 @@ public class PlaylistModel {
     }
 
     public static Builder builder() { return new Builder(); }
-
+    
+    public void setSongList(List<AlbumTrack> songList) {
+        //MARKER: added this is for ModelConverter
+    }
+    
     public static final class Builder {
         private String id;
         private String name;
         private String customerId;
         private int songCount;
         private List<String> tags;
+        private List<AlbumTrack> songList;
+        //MARKER: added this is for ModelConverter/Playlist
 
         public Builder withId(String idToUse) {
             this.id = idToUse;
@@ -125,5 +133,11 @@ public class PlaylistModel {
         }
 
         public PlaylistModel build() {return new PlaylistModel(this);}
+    
+        public Builder withSongList(List<AlbumTrack> songListToUse) {
+            //MARKER: added this is for ModelConverter
+            this.songList = songListToUse;
+            return this;
+        }
     }
 }

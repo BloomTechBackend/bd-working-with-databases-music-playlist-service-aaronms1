@@ -8,15 +8,49 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a record in the playlists table.
  */
 @DynamoDBTable(tableName = "playlists")
 public class Playlist {
-    private String id;
+    @DynamoDBHashKey
+    private String           id;
+    private String           name;
+    private Integer          songCount;
+    private Set<String>      tags;
     private List<AlbumTrack> songList;
-
+    private String           customerId;
+    
+    
+    public String getName() {
+        return name;
+    }
+    
+    public Playlist setName(String name) {
+        this.name = name;
+        return this;
+    }
+    
+    public Integer getSongCount() {
+        return songCount;
+    }
+    
+    public Playlist setSongCount(Integer songCount) {
+        this.songCount = songCount;
+        return this;
+    }
+    
+    public Set<String> getTags() {
+        return tags;
+    }
+    
+    public Playlist setTags(Set<String> tags) {
+        this.tags = tags;
+        return this;
+    }
+    
     @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
@@ -35,5 +69,14 @@ public class Playlist {
 
     public void setSongList(List<AlbumTrack> songList) {
         this.songList = songList;
+    }
+    
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+    
+    public String getCustomerId() {
+        return customerId;
+        
     }
 }
