@@ -48,11 +48,17 @@ PlaylistDao(DynamoDBMapper mapper)
 
 class PlaylistException extends RuntimeException {
 }
-class AlbumTrackNotFoundException {
+class AlbumTrackNotFoundException extends Exception{
 }
-class InvalidAttributeValueException {
+class InvalidAttributeValueException extends RuntimeException {
 }
-class PlaylistNotFoundException {
+class InvalidAttributeChangeException extends RuntimeException {
+}
+class PlaylistNotFoundException extends Exception {
+}
+class InvalidValueException extends Playlist {
+}
+class InvalidChangeException extends Playlist {
 }
 
 class Playlist {
@@ -81,5 +87,6 @@ GetPlaylistActivity *-- PlaylistDao
 GetPlaylistSongsActivity *-- PlaylistDao
 UpdatePlaylistActivity o-- PlaylistDao
 CreatePlaylistActivity *---  PlaylistDao
+
 
 @enduml
