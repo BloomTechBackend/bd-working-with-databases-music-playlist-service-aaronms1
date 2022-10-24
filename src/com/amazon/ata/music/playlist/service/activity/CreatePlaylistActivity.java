@@ -10,6 +10,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
+
 /**
  * Implementation of the CreatePlaylistActivity for the MusicPlaylistService's CreatePlaylist API.
  *
@@ -24,6 +26,8 @@ public class CreatePlaylistActivity implements RequestHandler<CreatePlaylistRequ
      *
      * @param playlistDao PlaylistDao to access the playlists table.
      */
+    @Inject
+    //MARKER: for dagger
     public CreatePlaylistActivity(PlaylistDao playlistDao) {
         this.playlistDao = playlistDao;
     }

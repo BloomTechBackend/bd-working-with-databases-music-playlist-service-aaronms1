@@ -75,15 +75,20 @@ public class MT3IntrospectionTests {
         // GIVEN all the (non-TCT) Activity classes
         // WHEN we search the declared methods of the Component interface that return Activity types
         // THEN there should be one for each Activity class
-        findNonFrameworkClasses("activity", "Activity", RequestHandler.class)
-            .forEach(clazz -> MethodQuery.inType(component).withReturnType(clazz).findMethodOrFail());
+        findNonFrameworkClasses(
+          "activity","Activity",
+          RequestHandler.class)
+            .forEach(clazz -> MethodQuery.inType(component)
+                                .withReturnType(clazz).findMethodOrFail());
     }
 
     @Test
     public void mt03_module_providesSingletonDynamoDbMapper() {
         // GIVEN a method in the  DynamoDBMapper return type
         // we could add a dependency in this package to get the class, but it scans pretty fast
-        Class<?> dynamoDbMapper = ClassQuery.inExactPackage("com.amazonaws.services.dynamodbv2.datamodeling")
+        Class<?> dynamoDbMapper =
+          ClassQuery.inExactPackage(
+            "com.amazonaws.services.dynamodbv2.datamodeling")
             .withExactSimpleName("DynamoDBMapper")
             .findClassOrFail();
 

@@ -1,16 +1,19 @@
 package com.amazon.ata.music.playlist.service.activity;
 
+import com.amazon.ata.music.playlist.service.dependency.*;
 import com.amazon.ata.music.playlist.service.models.requests.AddSongToPlaylistRequest;
 import com.amazon.ata.music.playlist.service.models.results.AddSongToPlaylistResult;
 import com.amazon.ata.music.playlist.service.models.SongModel;
 import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
 import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
 
+import com.amazonaws.partitions.model.Service;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import java.util.Collections;
 
 /**
@@ -29,6 +32,8 @@ public class AddSongToPlaylistActivity implements RequestHandler<AddSongToPlayli
      * @param playlistDao PlaylistDao to access the playlist table.
      * @param albumTrackDao AlbumTrackDao to access the album_track table.
      */
+    @Inject
+    //MARKER: for dagger
     public AddSongToPlaylistActivity(PlaylistDao playlistDao, AlbumTrackDao albumTrackDao) {
         this.playlistDao = playlistDao;
         this.albumTrackDao = albumTrackDao;
@@ -50,7 +55,8 @@ public class AddSongToPlaylistActivity implements RequestHandler<AddSongToPlayli
      *                                 API defined {@link SongModel}s
      */
     @Override
-    public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
+    public AddSongToPlaylistResult handleRequest(
+      final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
         log.info("Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
 
         return AddSongToPlaylistResult.builder()
