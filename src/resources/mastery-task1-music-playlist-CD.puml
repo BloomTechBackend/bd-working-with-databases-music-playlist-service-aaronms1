@@ -45,22 +45,6 @@ PlaylistDao(DynamoDBMapper mapper)
 + getPlaylist(String id) : Playlist
 }
 
-
-class PlaylistException extends RuntimeException {
-}
-class AlbumTrackNotFoundException extends Exception{
-}
-class InvalidAttributeValueException extends RuntimeException {
-}
-class InvalidAttributeChangeException extends RuntimeException {
-}
-class PlaylistNotFoundException extends Exception {
-}
-class InvalidValueException extends Playlist {
-}
-class InvalidChangeException extends Playlist {
-}
-
 class Playlist {
 - @DynamoDBHashKey id : String
 - name : String
@@ -88,5 +72,29 @@ GetPlaylistSongsActivity *-- PlaylistDao
 UpdatePlaylistActivity o-- PlaylistDao
 CreatePlaylistActivity *---  PlaylistDao
 
+@enduml
+
+@startuml
+class PlaylistException {
+}
+class AlbumTrackNotFoundException {
+}
+class InvalidAttributeValueException {
+}
+class InvalidAttributeChangeException {
+}
+class PlaylistNotFoundException {
+}
+class InvalidValueException {
+}
+class InvalidChangeException {
+}
+
+PlaylistNotFoundException -up-|>  PlaylistException
+AlbumTrackNotFoundException -up-|> PlaylistException
+PlaylistException -up-|> Exceptions
+
+InvalidAttributeChangeException -up-|> InvalidAttributeException
+InvalidAttributeValueException -up-|> InvalidAttributeException
 
 @enduml

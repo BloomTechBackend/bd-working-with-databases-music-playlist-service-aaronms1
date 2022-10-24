@@ -39,12 +39,15 @@ public class MT2DesignIntrospectionTests {
         String invalidValueException = "InvalidAttributeValueException";
         String invalidChangeException = "InvalidAttributeChangeException";
 
-        Set<String> relatedTypesToValueException = PlantUmlClassDiagramHelper.getClassDiagramRelatedTypes(content,
+        Set<String> relatedTypesToValueException =
+          PlantUmlClassDiagramHelper.getClassDiagramRelatedTypes(content,
                 invalidValueException);
-        Set<String> relatedTypesToChangeException = PlantUmlClassDiagramHelper.getClassDiagramRelatedTypes(content,
+        Set<String> relatedTypesToChangeException =
+          PlantUmlClassDiagramHelper.getClassDiagramRelatedTypes(content,
                 invalidChangeException);
 
-        Set<String> commonRelatedTypes = Sets.intersection(relatedTypesToValueException, relatedTypesToChangeException);
+        Set<String> commonRelatedTypes =
+          Sets.intersection(relatedTypesToValueException, relatedTypesToChangeException);
 
         assertFalse(commonRelatedTypes.isEmpty(),
                 String.format("Expected %s and %s to have at least one related class in common.",

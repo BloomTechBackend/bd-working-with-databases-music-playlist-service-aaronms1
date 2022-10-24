@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5f3e364-d606-4925-a420-4550086e3a0d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeChangeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeChangeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeChangeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/amazon/ata/music/playlist/service/exceptions/InvalidAttributeValueException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/mastery-task1-music-playlist-CD.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/mastery-task1-music-playlist-CD.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tst/com/amazon/ata/music/playlist/service/tct/MT2DesignIntrospectionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/tst/com/amazon/ata/music/playlist/service/tct/MT2DesignIntrospectionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
