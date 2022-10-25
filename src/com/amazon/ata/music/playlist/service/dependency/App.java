@@ -1,26 +1,24 @@
-package com.amazon.ata.music.playlist.service.dependency;
-
-import com.amazon.ata.aws.dynamodb.DynamoDbClientProvider;
-import com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivity;
-import com.amazon.ata.music.playlist.service.activity.CreatePlaylistActivity;
-import com.amazon.ata.music.playlist.service.activity.GetPlaylistActivity;
-import com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivity;
-import com.amazon.ata.music.playlist.service.activity.UpdatePlaylistActivity;
-import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
-import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
-
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-
-import javax.inject.Inject;
-
-/**
- * This class manages service dependencies.
- */
-public class App {
-    private DynamoDBMapper dynamoDBMapper;
-}
-////    ServiceComponent dagger = DaggerServiceComponent.builder().daoModule(new DaoModule()).build();
+//package com.amazon.ata.music.playlist.service.dependency;
+//
+//import com.amazon.ata.aws.dynamodb.DynamoDbClientProvider;
+//import com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivity;
+//import com.amazon.ata.music.playlist.service.activity.CreatePlaylistActivity;
+//import com.amazon.ata.music.playlist.service.activity.GetPlaylistActivity;
+//import com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivity;
+//import com.amazon.ata.music.playlist.service.activity.UpdatePlaylistActivity;
+//import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
+//import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
+//
+//import com.amazonaws.regions.Regions;
+//import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+//
+//import javax.inject.Inject;
+//
+///**
+// * This class manages service dependencies.
+// */
+//public class App {
+//    private DynamoDBMapper dynamoDBMapper;
 //
 //    /**
 //     * Provides a new CreatePlaylistActivity with injected dependencies.

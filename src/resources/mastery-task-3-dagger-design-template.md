@@ -60,28 +60,28 @@ your module, `DaoModule`, as indicated below. Use these names in
 your implementation as well)
 
 ```
-@______
-@______(______ = {______.class})
+@Singleton
+@Component(modules = {DaoModule.class})
 public interface ServiceComponent {
-    ______ provide______();
-
-    ______ provide______();
-
-    ______ provide______();
-
-    ______ provide______();
-
-    ______ provide______();
+    AddSongToPlaylistActivity provideAddSongToPlaylistActivity();
+    
+    CreatePlaylistActivity provideCreatePlaylistActivity();
+    
+    GetPlaylistActivity provideGetPlaylistActivity();
+    
+    GetPlaylistSongsActivity provideGetPlaylistSongsActivity();
+    
+    UpdatePlaylistActivity provideUpdatePlaylistActivity();
 }
 ```
 
 ```
-@______
+@Module
 public class DaoModule {
 
-    @______
-    @______
-    public ______ provide______() {
+    @Povides
+    @Singleton
+    public DynamoDBMapper provideDynamoDbMapper() {
         // Implementation in milestone 2
     }
 }

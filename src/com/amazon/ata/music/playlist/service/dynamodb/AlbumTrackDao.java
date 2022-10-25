@@ -18,7 +18,7 @@ public class AlbumTrackDao {
      * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the album_track table
      */
     @Inject
-    //MARKER: for dagger
+    //MARKER:for dagger
     public AlbumTrackDao(DynamoDBMapper dynamoDbMapper) {
         this.dynamoDbMapper = dynamoDbMapper;
     }

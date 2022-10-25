@@ -23,6 +23,4 @@ public interface ServiceComponent {
     GetPlaylistSongsActivity provideGetPlaylistSongsActivity();
     
     UpdatePlaylistActivity provideUpdatePlaylistActivity();
-    
-//    App provideApp();
 }

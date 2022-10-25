@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public class AddSongToPlaylistActivityProvider implements RequestHandler<AddSongToPlaylistRequest, AddSongToPlaylistResult> {
 
-    private static App app;
+   // private static App app;
     @Inject
     //MARKER: for dagger
     public AddSongToPlaylistActivityProvider() {
@@ -19,19 +19,24 @@ public class AddSongToPlaylistActivityProvider implements RequestHandler<AddSong
 
     @Override
     public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
-        ServiceComponent dagger = DaggerServiceComponent.create();
-        return dagger.provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
+       // ServiceComponent dagger = DaggerServiceComponent.create();
+        return getServiceComponent().provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
 //        app = dagger.provideApp();
         
-        return getApp().provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
+//        return getApp().provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
       
     }
-
-    private App getApp() {
-        if (app == null) {
-            app = new App();
-        }
-
-        return app;
+    
+    public ServiceComponent getServiceComponent() {
+        ServiceComponent dagger = DaggerServiceComponent.create();
+        return dagger;
     }
+//
+//    private App getApp() {
+//        if (app == null) {
+//            app = new App();
+//        }
+//
+//        return app;
+//    }
 }
