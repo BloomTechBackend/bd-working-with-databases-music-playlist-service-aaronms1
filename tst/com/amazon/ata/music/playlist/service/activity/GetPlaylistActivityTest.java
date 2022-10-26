@@ -1,4 +1,4 @@
-package tst.com.amazon.ata.music.playlist.service.activity;
+package com.amazon.ata.music.playlist.service.activity;
 
 import com.amazon.ata.music.playlist.service.activity.GetPlaylistActivity;
 import com.amazon.ata.music.playlist.service.models.requests.GetPlaylistRequest;

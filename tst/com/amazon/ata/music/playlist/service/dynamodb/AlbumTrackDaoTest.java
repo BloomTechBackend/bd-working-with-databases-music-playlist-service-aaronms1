@@ -1,4 +1,4 @@
-package tst.com.amazon.ata.music.playlist.service.dynamodb;
+package com.amazon.ata.music.playlist.service.dynamodb;
 
 import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;

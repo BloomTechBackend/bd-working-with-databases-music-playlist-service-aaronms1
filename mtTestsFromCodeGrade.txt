@@ -1,0 +1,17 @@
+1
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.tct.MT2*'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.tct.MT3*'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest.handleRequest_validRequest_addsSongToEndOfPlaylist'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest.handleRequest_noMatchingPlaylistId_throwsPlaylistNotFoundException'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivityTest.handleRequest_noMatchingAlbumTrack_throwsAlbumTrackNotFoundException'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivityTest.handleRequest_playlistExistsWithSongs_returnsSongsInPlaylist'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivityTest.handleRequest_playlistExistsWithoutSongs_returnsEmptyList'
+
+./gradlew -q clean :test --tests 'com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivityTest.handleRequest_noMatchingPlaylistId_throwsPlaylistNotFoundException'

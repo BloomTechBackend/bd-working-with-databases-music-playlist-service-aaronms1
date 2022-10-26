@@ -1,14 +1,15 @@
-package tst.com.amazon.ata.music.playlist.service.converters;
+package com.amazon.ata.music.playlist.service.converters;
 
 import com.amazon.ata.music.playlist.service.converters.ModelConverter;
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
 import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
+import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
 import com.amazon.ata.music.playlist.service.models.PlaylistModel;
 import com.amazon.ata.music.playlist.service.models.SongModel;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Test;
-import tst.com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
+import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
 
 import java.util.LinkedList;
 import java.util.List;

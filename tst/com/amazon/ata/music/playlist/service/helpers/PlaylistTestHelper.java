@@ -1,9 +1,9 @@
 //package tst.com.amazon.ata.music.playlist.service.helpers;//package com
 // .amazon.ata.music.playlist.service.helpers;
-package tst.com.amazon.ata.music.playlist.service.helpers;
+package com.amazon.ata.music.playlist.service.helpers;
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
 import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
-import tst.com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
+import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
 
 import java.util.Collections;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package tst.com.amazon.ata.music.playlist.service.helpers;//package com.amazon.ata.music.playlist.service.helpers;
+package com.amazon.ata.music.playlist.service.helpers;//package com.amazon.ata.music.playlist.service.helpers;
 
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
 import com.amazon.ata.music.playlist.service.models.SongModel;

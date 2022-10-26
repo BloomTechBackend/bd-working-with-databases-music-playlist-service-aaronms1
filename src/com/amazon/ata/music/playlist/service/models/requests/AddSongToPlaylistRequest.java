@@ -59,8 +59,8 @@ public class AddSongToPlaylistRequest {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
         AddSongToPlaylistRequest that = (AddSongToPlaylistRequest) o;
         return trackNumber == that.trackNumber &&
                 queueNext == that.queueNext &&

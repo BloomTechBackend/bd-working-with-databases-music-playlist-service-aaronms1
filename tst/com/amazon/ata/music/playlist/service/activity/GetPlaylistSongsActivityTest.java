@@ -1,4 +1,4 @@
-package tst.com.amazon.ata.music.playlist.service.activity;
+package com.amazon.ata.music.playlist.service.activity;
 
 import com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivity;
 import com.amazon.ata.music.playlist.service.converters.ModelConverter;
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import tst.com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
-import tst.com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
+import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
+import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
 
 import java.util.*;
 
