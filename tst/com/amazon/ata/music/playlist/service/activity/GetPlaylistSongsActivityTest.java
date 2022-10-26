@@ -29,7 +29,7 @@ public class GetPlaylistSongsActivityTest {
     private GetPlaylistSongsActivity getPlaylistSongsActivity;
 
     @BeforeEach
-    private void setup() {
+    public void setup() {
         MockitoAnnotations.openMocks(this);
         getPlaylistSongsActivity = new GetPlaylistSongsActivity(playlistDao);
     }

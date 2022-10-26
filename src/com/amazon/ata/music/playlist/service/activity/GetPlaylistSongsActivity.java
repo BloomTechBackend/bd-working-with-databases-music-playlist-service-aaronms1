@@ -52,7 +52,7 @@ public class GetPlaylistSongsActivity implements RequestHandler<GetPlaylistSongs
         
         log.info(
           "Received GetPlaylistSongsRequest {}", getPlaylistSongsRequest);
-        //MARKER: below for MT5
+        //MARKER: below for MT4
         SongOrder songOrder =
           computeSongOrder(getPlaylistSongsRequest.getOrder());
     
@@ -66,19 +66,19 @@ public class GetPlaylistSongsActivity implements RequestHandler<GetPlaylistSongs
         } else if (songOrder.equals(SongOrder.SHUFFLED)) {
             Collections.shuffle(songModels);
         }
-        //MARKER: above for MT5
+        //MARKER: above for MT4
         return GetPlaylistSongsResult.builder()
-                .withSongList(Collections.singletonList(new SongModel()))
-                .build();
+                .withSongList(songModels)
+                .build();       //MARKER: for MT4
     }
-    //MARKER: below for MT5
+    //MARKER: below for MT4
     private SongOrder computeSongOrder(SongOrder songOrder) {
         SongOrder computedSongOrder = songOrder;
     
         if (null == songOrder) {
             computedSongOrder = SongOrder.DEFAULT;
-            //MARKER:exception
         } else if (!Arrays.asList(SongOrder.values()).contains(songOrder)) {
+            //MARKER: for MT4
             throw new IllegalArgumentException(
               String.format("Unrecognized song order: '%s'", songOrder));
         }

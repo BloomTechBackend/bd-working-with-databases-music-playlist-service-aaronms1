@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
 import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -37,8 +38,8 @@ public class AddSongToPlaylistActivityTest {
     private AddSongToPlaylistActivity addSongToPlaylistActivity;
 
     @BeforeEach
-    private void setup() {
-        initMocks(this);
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
         addSongToPlaylistActivity = new AddSongToPlaylistActivity(playlistDao, albumTrackDao);
     }
 

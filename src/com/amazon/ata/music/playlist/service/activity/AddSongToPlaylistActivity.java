@@ -61,7 +61,7 @@ public class AddSongToPlaylistActivity
       final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
         log.info(
           "Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
-        //MARKER:below for MT5
+        //MARKER:below for MT4
         String asin =
           addSongToPlaylistRequest.getAsin();
         int trackNumber =
@@ -80,13 +80,13 @@ public class AddSongToPlaylistActivity
         }
         playlist.setSongList(albumTracks);
         playlist.setSongCount(playlist.getSongList().size());
-//redundant        playlist =
+        playlist =
         playlistDao.savePlaylist(playlist);
         List<SongModel> songModels =
           new ModelConverter().toSongModelList(playlist.getSongList());
-        //MARKER:above for MT5
+        //MARKER:above for MT4
         return AddSongToPlaylistResult.builder()
-                .withSongList(Collections.singletonList(new SongModel()))
-                .build();
+                .withSongList(songModels)
+                .build();  //MARKER:for MT4
     }
 }
