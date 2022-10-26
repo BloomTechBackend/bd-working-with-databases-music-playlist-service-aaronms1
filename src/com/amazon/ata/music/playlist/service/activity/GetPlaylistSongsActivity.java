@@ -1,5 +1,8 @@
 package com.amazon.ata.music.playlist.service.activity;
 
+import com.amazon.ata.music.playlist.service.converters.ModelConverter;
+import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
+import com.amazon.ata.music.playlist.service.models.SongOrder;
 import com.amazon.ata.music.playlist.service.models.requests.GetPlaylistSongsRequest;
 import com.amazon.ata.music.playlist.service.models.results.GetPlaylistSongsResult;
 import com.amazon.ata.music.playlist.service.models.SongModel;
@@ -11,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * Implementation of the GetPlaylistSongsActivity for the MusicPlaylistService's GetPlaylistSongs API.
@@ -44,11 +47,41 @@ public class GetPlaylistSongsActivity implements RequestHandler<GetPlaylistSongs
      * @return getPlaylistSongsResult result object containing the playlist's list of API defined {@link SongModel}s
      */
     @Override
-    public GetPlaylistSongsResult handleRequest(final GetPlaylistSongsRequest getPlaylistSongsRequest, Context context) {
-        log.info("Received GetPlaylistSongsRequest {}", getPlaylistSongsRequest);
-
+    public GetPlaylistSongsResult handleRequest(
+      final GetPlaylistSongsRequest getPlaylistSongsRequest, Context context) {
+        
+        log.info(
+          "Received GetPlaylistSongsRequest {}", getPlaylistSongsRequest);
+        //MARKER: below for MT5
+        SongOrder songOrder =
+          computeSongOrder(getPlaylistSongsRequest.getOrder());
+    
+        Playlist        playlist   =
+          playlistDao.getPlaylist(getPlaylistSongsRequest.getId());
+        List<SongModel> songModels =
+          new ModelConverter().toSongModelList(playlist.getSongList());
+    
+        if (songOrder.equals(SongOrder.REVERSED)) {
+            Collections.reverse(songModels);
+        } else if (songOrder.equals(SongOrder.SHUFFLED)) {
+            Collections.shuffle(songModels);
+        }
+        //MARKER: above for MT5
         return GetPlaylistSongsResult.builder()
                 .withSongList(Collections.singletonList(new SongModel()))
                 .build();
+    }
+    //MARKER: below for MT5
+    private SongOrder computeSongOrder(SongOrder songOrder) {
+        SongOrder computedSongOrder = songOrder;
+    
+        if (null == songOrder) {
+            computedSongOrder = SongOrder.DEFAULT;
+            //MARKER:exception
+        } else if (!Arrays.asList(SongOrder.values()).contains(songOrder)) {
+            throw new IllegalArgumentException(
+              String.format("Unrecognized song order: '%s'", songOrder));
+        }
+        return computedSongOrder;
     }
 }

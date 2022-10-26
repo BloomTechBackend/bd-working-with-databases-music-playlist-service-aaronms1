@@ -8,24 +8,27 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.inject.Inject;
 
-public class CreatePlaylistActivityProvider implements RequestHandler<CreatePlaylistRequest, CreatePlaylistResult> {
-
+public class CreatePlaylistActivityProvider
+  implements RequestHandler<CreatePlaylistRequest, CreatePlaylistResult> {
    // private static App app;
     @Inject
+    //MARKER:for dagger
     public CreatePlaylistActivityProvider() {
 
     }
 
     @Override
-    public CreatePlaylistResult handleRequest(final CreatePlaylistRequest createPlaylistRequest, Context context) {
-        return getServiceComponent().provideCreatePlaylistActivity().handleRequest(createPlaylistRequest, context);
+    public CreatePlaylistResult handleRequest(
+      final CreatePlaylistRequest createPlaylistRequest, Context context) {
+        return getServiceComponent()
+                 .provideCreatePlaylistActivity()
+                 .handleRequest(createPlaylistRequest, context);
     }
     
     public ServiceComponent getServiceComponent() {
         ServiceComponent dagger = DaggerServiceComponent.create();
         return dagger;
     }
-
 //    private App getApp() {
 //        if (app == null) {
 //            app = new App();

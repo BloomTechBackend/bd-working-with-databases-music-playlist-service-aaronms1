@@ -1,6 +1,7 @@
-package com.amazon.ata.music.playlist.service.tct;
+package tst.com.amazon.ata.music.playlist.service.tct;
 
 import com.amazon.ata.test.reflect.ClassQuery;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Tag;

@@ -8,9 +8,10 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.inject.Inject;
 
-public class AddSongToPlaylistActivityProvider implements RequestHandler<AddSongToPlaylistRequest, AddSongToPlaylistResult> {
-
+public class AddSongToPlaylistActivityProvider
+  implements RequestHandler<AddSongToPlaylistRequest, AddSongToPlaylistResult> {
    // private static App app;
+   private static final ServiceComponent dagger = DaggerServiceComponent.create();
     @Inject
     //MARKER: for dagger
     public AddSongToPlaylistActivityProvider() {
@@ -18,19 +19,19 @@ public class AddSongToPlaylistActivityProvider implements RequestHandler<AddSong
     }
 
     @Override
-    public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
-       // ServiceComponent dagger = DaggerServiceComponent.create();
-        return getServiceComponent().provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
-//        app = dagger.provideApp();
-        
-//        return getApp().provideAddSongToPlaylistActivity().handleRequest(addSongToPlaylistRequest, context);
+    public AddSongToPlaylistResult handleRequest(
+      final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
+        return dagger.provideAddSongToPlaylistActivity()
+                 .handleRequest(addSongToPlaylistRequest, context);
+        // return getApp().provideAddSongToPlaylistActivity().handleRequest
+        // (addSongToPlaylistRequest, context);
       
     }
     
-    public ServiceComponent getServiceComponent() {
-        ServiceComponent dagger = DaggerServiceComponent.create();
-        return dagger;
-    }
+//    public ServiceComponent getServiceComponent() {
+//        ServiceComponent dagger = DaggerServiceComponent.create();
+//        return dagger;
+//    }
 //
 //    private App getApp() {
 //        if (app == null) {

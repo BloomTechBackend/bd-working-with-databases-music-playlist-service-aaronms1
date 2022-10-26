@@ -1,27 +1,28 @@
 package com.amazon.ata.music.playlist.service.activity;
 
-import com.amazon.ata.music.playlist.service.dependency.*;
-import com.amazon.ata.music.playlist.service.models.requests.AddSongToPlaylistRequest;
-import com.amazon.ata.music.playlist.service.models.results.AddSongToPlaylistResult;
-import com.amazon.ata.music.playlist.service.models.SongModel;
+import com.amazon.ata.music.playlist.service.converters.ModelConverter;
 import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
 import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
-
-import com.amazonaws.partitions.model.Service;
+import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
+import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
+import com.amazon.ata.music.playlist.service.models.SongModel;
+import com.amazon.ata.music.playlist.service.models.requests.AddSongToPlaylistRequest;
+import com.amazon.ata.music.playlist.service.models.results.AddSongToPlaylistResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * Implementation of the AddSongToPlaylistActivity for the MusicPlaylistService's AddSongToPlaylist API.
  *
  * This API allows the customer to add a song to their existing playlist.
  */
-public class AddSongToPlaylistActivity implements RequestHandler<AddSongToPlaylistRequest, AddSongToPlaylistResult> {
+public class AddSongToPlaylistActivity
+  implements RequestHandler<AddSongToPlaylistRequest, AddSongToPlaylistResult> {
     private final Logger log = LogManager.getLogger();
     private final PlaylistDao playlistDao;
     private final AlbumTrackDao albumTrackDao;
@@ -34,7 +35,8 @@ public class AddSongToPlaylistActivity implements RequestHandler<AddSongToPlayli
      */
     @Inject
     //MARKER: for dagger
-    public AddSongToPlaylistActivity(PlaylistDao playlistDao, AlbumTrackDao albumTrackDao) {
+    public AddSongToPlaylistActivity(
+      PlaylistDao playlistDao, AlbumTrackDao albumTrackDao) {
         this.playlistDao = playlistDao;
         this.albumTrackDao = albumTrackDao;
     }
@@ -57,8 +59,32 @@ public class AddSongToPlaylistActivity implements RequestHandler<AddSongToPlayli
     @Override
     public AddSongToPlaylistResult handleRequest(
       final AddSongToPlaylistRequest addSongToPlaylistRequest, Context context) {
-        log.info("Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
-
+        log.info(
+          "Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
+        //MARKER:below for MT5
+        String asin =
+          addSongToPlaylistRequest.getAsin();
+        int trackNumber =
+          addSongToPlaylistRequest.getTrackNumber();
+        Playlist playlist =
+          playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
+        AlbumTrack albumTrackToAdd =
+          albumTrackDao.getAlbumTrack(asin, trackNumber);
+        LinkedList<AlbumTrack> albumTracks =
+          (LinkedList<AlbumTrack>)(playlist.getSongList());
+        
+        if (addSongToPlaylistRequest.isQueueNext()) {
+            albumTracks.addFirst( albumTrackToAdd);
+        } else {
+            albumTracks.addLast(albumTrackToAdd);
+        }
+        playlist.setSongList(albumTracks);
+        playlist.setSongCount(playlist.getSongList().size());
+//redundant        playlist =
+        playlistDao.savePlaylist(playlist);
+        List<SongModel> songModels =
+          new ModelConverter().toSongModelList(playlist.getSongList());
+        //MARKER:above for MT5
         return AddSongToPlaylistResult.builder()
                 .withSongList(Collections.singletonList(new SongModel()))
                 .build();

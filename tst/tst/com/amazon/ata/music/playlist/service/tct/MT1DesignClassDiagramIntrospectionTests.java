@@ -1,7 +1,8 @@
-package com.amazon.ata.music.playlist.service.tct;
+package tst.com.amazon.ata.music.playlist.service.tct;
 
 import com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions;
 import com.amazon.ata.test.helper.AtaTestHelper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions.*;
+import static com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions.assertClassDiagramIncludesContainsRelationship;
+import static com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions.assertClassDiagramTypeContainsMember;
+import static com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions.assertClassDiagramTypeContainsMethod;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @Tag("MT1-Design")

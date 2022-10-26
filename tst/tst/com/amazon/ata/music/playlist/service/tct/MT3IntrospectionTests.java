@@ -1,8 +1,9 @@
-package com.amazon.ata.music.playlist.service.tct;
+package tst.com.amazon.ata.music.playlist.service.tct;
 
 import com.amazon.ata.test.reflect.ClassQuery;
 import com.amazon.ata.test.reflect.ConstructorQuery;
 import com.amazon.ata.test.reflect.MethodQuery;
+
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import dagger.Component;
 import dagger.Module;
@@ -14,15 +15,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Tag("MT03")
 public class MT3IntrospectionTests {
@@ -75,20 +79,15 @@ public class MT3IntrospectionTests {
         // GIVEN all the (non-TCT) Activity classes
         // WHEN we search the declared methods of the Component interface that return Activity types
         // THEN there should be one for each Activity class
-        findNonFrameworkClasses(
-          "activity","Activity",
-          RequestHandler.class)
-            .forEach(clazz -> MethodQuery.inType(component)
-                                .withReturnType(clazz).findMethodOrFail());
+        findNonFrameworkClasses("activity", "Activity", RequestHandler.class)
+            .forEach(clazz -> MethodQuery.inType(component).withReturnType(clazz).findMethodOrFail());
     }
 
     @Test
     public void mt03_module_providesSingletonDynamoDbMapper() {
         // GIVEN a method in the  DynamoDBMapper return type
         // we could add a dependency in this package to get the class, but it scans pretty fast
-        Class<?> dynamoDbMapper =
-          ClassQuery.inExactPackage(
-            "com.amazonaws.services.dynamodbv2.datamodeling")
+        Class<?> dynamoDbMapper = ClassQuery.inExactPackage("com.amazonaws.services.dynamodbv2.datamodeling")
             .withExactSimpleName("DynamoDBMapper")
             .findClassOrFail();
 

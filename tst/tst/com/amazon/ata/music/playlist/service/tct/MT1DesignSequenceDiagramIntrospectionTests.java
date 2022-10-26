@@ -1,7 +1,8 @@
-package com.amazon.ata.music.playlist.service.tct;
+package tst.com.amazon.ata.music.playlist.service.tct;
 
 import com.amazon.ata.test.assertions.PlantUmlSequenceDiagramAssertions;
 import com.amazon.ata.test.helper.AtaTestHelper;
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

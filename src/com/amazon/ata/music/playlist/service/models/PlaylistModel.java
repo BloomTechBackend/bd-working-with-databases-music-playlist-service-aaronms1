@@ -27,23 +27,16 @@ public class PlaylistModel {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
-    }
-
+    
+    public String getName() { return name; }
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
+    public String getCustomerId() { return customerId;  }
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
@@ -51,7 +44,6 @@ public class PlaylistModel {
     public int getSongCount() {
         return songCount;
     }
-
     public void setSongCount(int songCount) {
         this.songCount = songCount;
     }
@@ -59,7 +51,6 @@ public class PlaylistModel {
     public List<String> getTags() {
         return tags;
     }
-
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
@@ -95,7 +86,7 @@ public class PlaylistModel {
     public static Builder builder() { return new Builder(); }
     
     public void setSongList(List<AlbumTrack> songList) {
-        //MARKER: added this is for ModelConverter
+        //MARKER:added this is for ModelConverter MT2
     }
     
     public static final class Builder {
@@ -105,7 +96,7 @@ public class PlaylistModel {
         private int songCount;
         private List<String> tags;
         private List<AlbumTrack> songList;
-        //MARKER: added this is for ModelConverter/Playlist
+        //MARKER:added this is for ModelConverter/Playlist MT2
 
         public Builder withId(String idToUse) {
             this.id = idToUse;
@@ -135,7 +126,7 @@ public class PlaylistModel {
         public PlaylistModel build() {return new PlaylistModel(this);}
     
         public Builder withSongList(List<AlbumTrack> songListToUse) {
-            //MARKER: added this is for ModelConverter
+            //MARKER:added this is for ModelConverter
             this.songList = songListToUse;
             return this;
         }

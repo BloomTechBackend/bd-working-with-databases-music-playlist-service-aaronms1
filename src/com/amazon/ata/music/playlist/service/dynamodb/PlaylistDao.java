@@ -12,18 +12,17 @@ import javax.inject.Inject;
  */
 public class PlaylistDao {
     private final DynamoDBMapper dynamoDbMapper;
-
+    
     /**
      * Instantiates a PlaylistDao object.
      *
      * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the playlists table
      */
     @Inject
-    //MARKER: for dagger
     public PlaylistDao(DynamoDBMapper dynamoDbMapper) {
         this.dynamoDbMapper = dynamoDbMapper;
     }
-
+    
     /**
      * Returns the {@link Playlist} corresponding to the specified id.
      *
@@ -32,11 +31,21 @@ public class PlaylistDao {
      */
     public Playlist getPlaylist(String id) {
         Playlist playlist = this.dynamoDbMapper.load(Playlist.class, id);
-
         if (playlist == null) {
-            throw new PlaylistNotFoundException("Could not find playlist with id " + id);
+            //MARKER:exception
+            throw new PlaylistNotFoundException(
+              "Could not find playlist with id:-->\n " + id);
         }
-
+        return playlist;
+    }
+    
+    /**
+     * Saves, creates, or updates the given playlist.
+     * @param playlist The playlist to save
+     * @return The Playlist object that was saved
+     */
+    public Playlist savePlaylist(Playlist playlist) {
+        this.dynamoDbMapper.save(playlist);
         return playlist;
     }
 }
