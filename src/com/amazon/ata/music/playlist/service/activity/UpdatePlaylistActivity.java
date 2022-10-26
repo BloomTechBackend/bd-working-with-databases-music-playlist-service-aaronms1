@@ -1,10 +1,15 @@
 package com.amazon.ata.music.playlist.service.activity;
 
+import com.amazon.ata.music.playlist.service.converters.ModelConverter;
+import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
+import com.amazon.ata.music.playlist.service.exceptions.InvalidAttributeChangeException;
+import com.amazon.ata.music.playlist.service.exceptions.InvalidAttributeValueException;
 import com.amazon.ata.music.playlist.service.models.PlaylistModel;
 import com.amazon.ata.music.playlist.service.models.requests.UpdatePlaylistRequest;
 import com.amazon.ata.music.playlist.service.models.results.UpdatePlaylistResult;
 import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
 
+import com.amazon.ata.music.playlist.service.util.MusicPlaylistServiceUtils;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
@@ -51,11 +56,35 @@ public class UpdatePlaylistActivity implements RequestHandler<UpdatePlaylistRequ
      * @return updatePlaylistResult result object containing the API defined {@link PlaylistModel}
      */
     @Override
-    public UpdatePlaylistResult handleRequest(final UpdatePlaylistRequest updatePlaylistRequest, Context context) {
-        log.info("Received UpdatePlaylistRequest {}", updatePlaylistRequest);
-
+    public UpdatePlaylistResult handleRequest(
+      final UpdatePlaylistRequest updatePlaylistRequest, Context context) {
+        log.info(
+          "Received UpdatePlaylistRequest {}", updatePlaylistRequest);
+        //MARKER:below for mt4
+        if (!MusicPlaylistServiceUtils
+               .isValidString(updatePlaylistRequest.getName())) {
+            //MARKER: exception
+            throw new InvalidAttributeValueException(
+              "Playlist name:-->\n" + updatePlaylistRequest.getName() +
+              "-->contains illegal characters");
+        }
+    
+        Playlist playlist =
+          playlistDao.getPlaylist(updatePlaylistRequest.getId());
+        if (!playlist.getCustomerId()
+               .equals(updatePlaylistRequest.getCustomerId())) {
+            //MARKER: exception
+            throw new InvalidAttributeChangeException(
+              "Cannot change customer ID of playlist " + playlist.getId());
+        }
+        
+        playlist.setName(updatePlaylistRequest.getName());
+        playlist =
+        playlistDao.savePlaylist(playlist);
+        //MARKER:above for mt4
+        
         return UpdatePlaylistResult.builder()
-                .withPlaylist(new PlaylistModel())
-                .build();
+                .withPlaylist(new ModelConverter().toPlaylistModel(playlist))
+                .build();    //MARKER: for mt4^
     }
 }

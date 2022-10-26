@@ -12,6 +12,7 @@ import com.amazon.ata.music.playlist.service.models.results.UpdatePlaylistResult
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,7 +27,7 @@ public class UpdatePlaylistActivityTest {
 
     @BeforeEach
     public void setUp() {
-        initMocks(this);
+        MockitoAnnotations.openMocks(this);
         updatePlaylistActivity = new UpdatePlaylistActivity(playlistDao);
     }
 
