@@ -11,7 +11,8 @@ public class AddSongToPlaylistRequest {
     public AddSongToPlaylistRequest() {
     }
 
-    public AddSongToPlaylistRequest(String id, String asin, int trackNumber, boolean queueNext) {
+    public AddSongToPlaylistRequest(
+      String id, String asin, int trackNumber, boolean queueNext) {
         this.id = id;
         this.asin = asin;
         this.trackNumber = trackNumber;

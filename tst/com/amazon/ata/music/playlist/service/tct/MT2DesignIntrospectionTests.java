@@ -1,4 +1,4 @@
-package tst.com.amazon.ata.music.playlist.service.tct;
+package com.amazon.ata.music.playlist.service.tct;
 
 import com.amazon.ata.test.assertions.PlantUmlClassDiagramAssertions;
 import com.amazon.ata.test.helper.AtaTestHelper;

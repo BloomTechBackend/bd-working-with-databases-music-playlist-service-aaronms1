@@ -56,7 +56,7 @@ public class CreatePlaylistActivity
       final CreatePlaylistRequest createPlaylistRequest, Context context) {
         log.info(
           "Received CreatePlaylistRequest {}", createPlaylistRequest);
-        //MARKER:below for MT5
+        //MARKER:below for MT4
         if (!MusicPlaylistServiceUtils.isValidString(
           createPlaylistRequest.getName())) {
             //MARKER:exception
@@ -85,11 +85,11 @@ public class CreatePlaylistActivity
     
         playlistDao.savePlaylist(newPlaylist);
     
-        PlaylistModel playlistModel =
+        PlaylistModel newPlaylistModel =
           new ModelConverter().toPlaylistModel(newPlaylist);
-        //MARKER:above for MT5
+        //MARKER:above for MT4
         return CreatePlaylistResult.builder()
-                .withPlaylist(new PlaylistModel())
-                .build();
+                .withPlaylist(newPlaylistModel)
+                .build();  //MARKER ^^^ mt4
     }
 }

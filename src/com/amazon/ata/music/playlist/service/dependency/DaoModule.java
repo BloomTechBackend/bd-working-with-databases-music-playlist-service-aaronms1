@@ -18,29 +18,6 @@ public class DaoModule {
     public DynamoDBMapper provideDynamoDBMapper() {
         return new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
     }
-    
-//    @Provides
-//    @Singleton
-//    public PlaylistDao providePlaylistDao() {
-//        return new PlaylistDao(provideDynamoDBMapper());
-//    }
-//
-//    @Provides
-//    @Singleton
-//    public AlbumTrackDao provideAlbumTrackDao() {
-//        return new AlbumTrackDao(provideDynamoDBMapper());
-//    }
-//
-//    @Provides
-//    @Singleton
-//    public ATAUserHandler provideATAUserHandler() {
-//        return new ATAUserHandler();
-//    }
-//
-//    @Provides
-//    @Singleton
-//    public App provideApp() {
-//        return new App();
-//    }
+
     
 }

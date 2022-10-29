@@ -1,32 +1,25 @@
 package com.amazon.ata.music.playlist.service.activity;
 
-import com.amazon.ata.music.playlist.service.activity.AddSongToPlaylistActivity;
-import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
-import com.amazon.ata.music.playlist.service.models.requests.AddSongToPlaylistRequest;
-
-import com.amazon.ata.music.playlist.service.models.SongModel;
 import com.amazon.ata.music.playlist.service.dynamodb.AlbumTrackDao;
 import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
 import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
 import com.amazon.ata.music.playlist.service.exceptions.AlbumTrackNotFoundException;
 import com.amazon.ata.music.playlist.service.exceptions.PlaylistNotFoundException;
-import com.amazon.ata.music.playlist.service.models.results.AddSongToPlaylistResult;
 import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
 import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
-
+import com.amazon.ata.music.playlist.service.models.SongModel;
+import com.amazon.ata.music.playlist.service.models.requests.AddSongToPlaylistRequest;
+import com.amazon.ata.music.playlist.service.models.results.AddSongToPlaylistResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
-import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 public class AddSongToPlaylistActivityTest {
     @Mock

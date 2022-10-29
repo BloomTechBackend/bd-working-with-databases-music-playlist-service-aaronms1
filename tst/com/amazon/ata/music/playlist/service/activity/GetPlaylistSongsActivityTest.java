@@ -1,11 +1,12 @@
 package com.amazon.ata.music.playlist.service.activity;
 
-import com.amazon.ata.music.playlist.service.activity.GetPlaylistSongsActivity;
 import com.amazon.ata.music.playlist.service.converters.ModelConverter;
 import com.amazon.ata.music.playlist.service.dynamodb.PlaylistDao;
 import com.amazon.ata.music.playlist.service.dynamodb.models.AlbumTrack;
 import com.amazon.ata.music.playlist.service.dynamodb.models.Playlist;
 import com.amazon.ata.music.playlist.service.exceptions.PlaylistNotFoundException;
+import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
+import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
 import com.amazon.ata.music.playlist.service.models.SongModel;
 import com.amazon.ata.music.playlist.service.models.SongOrder;
 import com.amazon.ata.music.playlist.service.models.requests.GetPlaylistSongsRequest;
@@ -14,8 +15,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.amazon.ata.music.playlist.service.helpers.AlbumTrackTestHelper;
-import com.amazon.ata.music.playlist.service.helpers.PlaylistTestHelper;
 
 import java.util.*;
 
@@ -174,18 +173,4 @@ public class GetPlaylistSongsActivityTest {
           PlaylistNotFoundException.class, () -> getPlaylistSongsActivity
                                                    .handleRequest(request, null));
     }
-
-//    @Test
-//    public void handleRequest_withInvalidSongOrder_throwsException() {
-//        // GIVEN
-//        Playlist playlist = PlaylistTestHelper.generatePlaylist();
-//        String id = playlist.getId();
-//        GetPlaylistSongsRequest request = GetPlaylistSongsRequest.builder()
-//            .withId(id)
-//            .withOrder("NOT A VALID ORDER")
-//            .build();
-//
-//        // WHEN + THEN
-//        assertThrows(IllegalArgumentException.class, () -> getPlaylistSongsActivity.handleRequest(request));
-//    }
 }

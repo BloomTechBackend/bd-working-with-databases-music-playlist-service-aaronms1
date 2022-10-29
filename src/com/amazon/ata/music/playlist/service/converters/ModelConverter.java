@@ -16,6 +16,7 @@ public class ModelConverter {
      */
     public PlaylistModel toPlaylistModel(Playlist playlist) {
         List<String> tags = null;
+        
         if (playlist.getTags() != null) {
             tags = new ArrayList<>(playlist.getTags());
         }
@@ -53,7 +54,6 @@ public class ModelConverter {
         for (AlbumTrack albumTrack : albumTracks) {
             songModels.add(toSongModel(albumTrack));
         }
-        
         return songModels;
     }
 }

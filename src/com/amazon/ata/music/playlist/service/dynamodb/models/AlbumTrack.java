@@ -51,9 +51,11 @@ public class AlbumTrack {
         if (this == o) {
             return true;
         }
+        
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        
         AlbumTrack that = (AlbumTrack) o;
         return asin.equals(that.asin) &&
                  trackNumber.equals(that.trackNumber) &&

@@ -164,7 +164,7 @@ jar {
     }
     dependsOn('dependencies')
 }
-
+//MARKER:run this to geni a zip for lambda->() in the /distributions/UnitProject.zip
 task buildZip(type: Zip) {
     from compileJava
     from processResources
